@@ -1,30 +1,10 @@
-# ============================================================
-# ARA TM — Railway Ubuntu SSH Server
-# Developer / توسعه‌دهنده: Parham_7991
-# ============================================================
-# A Docker image that provides an Ubuntu 24.04 base with an SSH server
-# (SSHD) enabled, so you can connect to your Railway container via SSH.
-# ایمیج داکری بر پایه Ubuntu 24.04 با سرور SSH (SSHD) فعال،
-# برای اتصال از طریق SSH به کانتینر Railway شما.
+
 
 FROM ubuntu:24.04
 
-# The official Ubuntu 24.04 docker image ships a default "ubuntu" user with UID/GID 1000.
-# Remove it so UID/GID 1000 is free for our own SSH user.
-# ایمیج رسمی اوبونتو 24.04 کاربر پیش‌فرض "ubuntu" با UID/GID 1000 دارد.
-# آن را حذف می‌کنیم تا این شناسه برای کاربر SSH خودمان آزاد باشد.
 RUN userdel -r ubuntu 2>/dev/null || true
-
-# Enable the "universe" repository so we can install extra tooling
-# فعال‌سازی مخزن "universe" برای نصب ابزارهای بیشتر
 RUN sed -i 's/^Components: .*/Components: main restricted universe/' /etc/apt/sources.list.d/ubuntu.sources 2>/dev/null || true
 
-# Install dependencies. Root login is enabled so you can connect directly as root.
-# نصب وابستگی‌ها. ورود کاربر root فعال است تا بتوانید مستقیماً با کاربر root متصل شوید.
-# A full cloud-workstation toolkit: networking, editors, monitoring, archives,
-# dev tools, Python, Node.js (for Claude Code) and Persian/English locales.
-# یک جعبه‌ابزار کامل ایستگاه کاری ابری: شبکه، ویرایشگر، مانیتورینگ، آرشیو،
-# ابزار توسعه، پایتون، Node.js (برای Claude Code) و لوکِیل فارسی/انگلیسی.
 RUN apt-get update \
     && apt-get install -y \
         ca-certificates gnupg apt-transport-https software-properties-common \
@@ -62,19 +42,12 @@ ENV LC_ALL=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 ENV TERM=xterm-256color
 
-# Claude Code settings (ARA TM defaults). The auth token is NOT baked in — it
-# must be supplied by the builder via the ANTHROPIC_AUTH_TOKEN build arg, or at
-# runtime via the ANTHROPIC_AUTH_TOKEN environment variable (applied on every
-# container start by ssh-user-config.sh).
-# تنظیمات Claude Code (پیش‌فرض‌های ARA TM). توکن احراز هویت بیک نمی‌شود و باید
-# توسط سازنده از طریق آرگومان ساخت ANTHROPIC_AUTH_TOKEN، یا در زمان اجرا از طریق
-# متغیر محیطی ANTHROPIC_AUTH_TOKEN (اعمال‌شده روی هر اجرای کانتینر توسط ssh-user-config.sh) تامین شود.
+
 ARG ANTHROPIC_AUTH_TOKEN=""
 COPY claude-settings.json /root/.claude/settings.json
 RUN sed -i "s|__ANTHROPIC_AUTH_TOKEN__|${ANTHROPIC_AUTH_TOKEN}|g" /root/.claude/settings.json
 
-# Install Claude Code (official CLI by Anthropic) globally
-# نصب سراسری Claude Code (رابط خط فرمان رسمی Anthropic)
+
 RUN npm install -g @anthropic-ai/claude-code
 
 # Copy ssh user config to configure the user's password and authorized keys

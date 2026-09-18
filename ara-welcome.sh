@@ -35,18 +35,18 @@ fi
 
 # ---- Render / نمایش ----
 printf '\n'
-printf '%s\n' "${C_CYAN}${C_BOLD}   █████╗ ██████╗  █████╗     ████████╗███╗   ███╗${C_RESET}"
-printf '%s\n' "${C_CYAN}${C_BOLD}  ██╔══██╗██╔══██╗██╔══██╗    ╚══██╔══╝████╗ ████║${C_RESET}"
-printf '%s\n' "${C_BLUE}${C_BOLD}  ███████║██████╔╝███████║       ██║   ██╔████╔██║${C_RESET}"
-printf '%s\n' "${C_BLUE}${C_BOLD}  ██╔══██║██╔══██╗██╔══██║       ██║   ██║╚██╔╝██║${C_RESET}"
-printf '%s\n' "${C_PURPLE}${C_BOLD}  ██║  ██║██║  ██║██║  ██║       ██║   ██║ ╚═╝ ██║${C_RESET}"
-printf '%s\n' "${C_PURPLE}${C_BOLD}  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝       ╚═╝   ╚═╝     ╚═╝${C_RESET}"
+printf '%s\n' "${C_CYAN}${C_BOLD}   ██████╗ ███████╗██╗   ██╗${C_RESET}"
+printf '%s\n' "${C_CYAN}${C_BOLD} ██╔══██╗██╔════╝██║   ██║${C_RESET}"
+printf '%s\n' "${C_BLUE}${C_BOLD} ██║  ██║█████╗  ██║   ██║${C_RESET}"
+printf '%s\n' "${C_BLUE}${C_BOLD}  ██║  ██║██╔══╝  ╚██╗ ██╔╝║${C_RESET}"
+printf '%s\n' "${C_PURPLE}${C_BOLD} ██████╔╝███████╗ ╚████╔╝${C_RESET}"
+printf '%s\n' "${C_PURPLE}${C_BOLD}  ╚═════╝ ╚══════╝  ╚═══╝${C_RESET}"
 printf '\n'
-printf '%s\n' "${C_WHITE}${C_BOLD}          ☁  Cloud Shell · Railway Ubuntu  🚂${C_RESET}"
-printf '%s\n' "${C_YELLOW}${C_BOLD}               Developer · Parham_7991${C_RESET}"
+printf '%s\n' "${C_WHITE}${C_BOLD}          ☁  Cloud Shell · private shell  Ubuntu  🚂${C_RESET}"
+printf '%s\n' "${C_YELLOW}${C_BOLD}               Developer · reversebypass${C_RESET}"
 printf '\n'
 
-# Divider / خط‌جدا‌کننده
+# Divider / 
 line="${C_GREY}  ────────────────────────────────────────────────${C_RESET}"
 printf '%s\n' "$line"
 
